@@ -4,15 +4,20 @@ const cors = require('cors')
 const logger = require('morgan')
 const mongoose = require('mongoose')
 const axios = require('axios')
-// const todo = require('./src/models/todo')
-const user = require('./src/models/user')
+const usersRouter = require('./src/routes/users')
+const todosRouter = require('./src/routes/todos')
+const config = require('./config')
+
+// 모델링 테스트
+// const todo = require('./src/models/Todo')
+// const user = require('./src/models/User')
+
 
 let corsOptions = { // CORS 옵션
     origin: 'http://127.0.0.1:5000', //해당 URL 주소만 요청을 허락함
     credentials: true // 사용자 인증이 필요한 리소스를 요창할 수 있도록 허용함
 }
-let CONNECT_URL = 'mongodb://127.0.0.1:27017/midbar'
-mongoose.connect(CONNECT_URL)
+mongoose.connect(config.MONGODB_URL)
 .then(() => console.log('mongodb connected...'))
 .catch(e => console.log(`failed to connect mongodb: ${e}`))
 
@@ -22,6 +27,8 @@ app.use(express.json()) // request body 파싱
 app.use(logger('tiny')) // logger 설정 tiny는 꼭 써야 하는건가?
 /* 공통 미들웨어 - 끝 */
 
+app.use('/api/users', usersRouter) // /api/users
+app.use('/api/todos', todosRouter) // /api/todos
 
 app.get('/hello', (req, res) => { // URL 응답 테스트
     res.json('hello world!')

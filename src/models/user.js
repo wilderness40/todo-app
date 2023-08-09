@@ -40,13 +40,13 @@ module.exports = User
 
 // User 데이터 생성 테스트
 
-const user = new User({
-    name: '승현',
-    email: 'midbar@gmail.com',
-    userId: 'midbar',
-    password: '12345678',
-    isAdmin: true,
-})
+// const user = new User({
+//     name: '승현',
+//     email: 'midbar@gmail.com',
+//     userId: 'midbar',
+//     password: '12345678',
+//     isAdmin: true,
+// })
 
-user.save() // 메모리에 저장
-.then(() => console.log('user created!'))
+// user.save() // 메모리에 저장
+// .then(() => console.log('user created!'))
