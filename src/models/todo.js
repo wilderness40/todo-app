@@ -10,10 +10,20 @@ const todoSchema = new Schema({ // 스키마 정의
         required: true, // 필수작성 필드,데이터 저장시 빠져있으면 mongodb에서 오류나므로 반드시 기재해야함
         ref: 'User' // 사용자 모델을 참조, 어떤 사용자의 todo 인지 알 수있음, 사용자의 id값
     },
+    category: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     title: {
         type: String,
         required: true,
         trim: true, // 데이터베이스 저장전 공백없애주기
+    },
+    imgUrl: {
+        type: String,
+        required: true,
+        trim: true,
     },
     description: {
         type: String,

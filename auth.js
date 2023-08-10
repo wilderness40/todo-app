@@ -29,9 +29,10 @@ const isAuth = (req, res, next) => { // 권한을 확인하는 라우터핸들�
                 res.status(419).json({ code: 419, message: 'token expired !'})
             }else if(err){  // 토큰을 복호화 하던중에 에러 발생한 경우
                 res.status(401).json({ code: 401, message: 'Invaild Token'})
-            }
+            }else{
             req.user = userInfo // 브라우저에서 전송한 사용자 정보(jwttoken을 복호화 한 것)를 req 객체에 저장
             next()
+        }
         })
     }
 }
